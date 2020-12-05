@@ -2,7 +2,7 @@ name: Python Doit
 
 on:
   schedule:
-    - cron:  '55 23 * * *'
+    - cron:  '25 0 * * *'
 
 jobs:
   build:
@@ -14,8 +14,9 @@ jobs:
       with:
         python-version: '3.7'
     - name: python doit
-      run: python script/make-data-json.py
-    - name: publish data.json
+      run: mkdir ./dist
+      run: python script/web2json-data.py
+    - name: publish data json
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
