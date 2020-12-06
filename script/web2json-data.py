@@ -14,6 +14,7 @@ response.close()
 
 d = {}
 d['見出し'] = soup.find('title').get_text(strip=True)
+d['retrievedAt'] = retrieveAt
 tbls = soup.find_all('table', {'class': '__wys_table'})
 rows = tbls[0].find_all('tr')
 t = []
@@ -33,7 +34,7 @@ t.append([k.get_text(strip=True) for k in rows[0].find_all('th')])
 for e in rows[1:]:
   t.append([k.get_text(strip=True) for k in e.find_all('td')])
 d['PCR等検査陽性者一覧'] = t
-fn = './dist/{}'.format(retrieveAt)
+fn = './data/data/{}'.format(retrieveAt)
 fpout  = open(fn, 'w')
 json.dump(d, fpout, ensure_ascii=False, indent=4)
 fpout.close()
