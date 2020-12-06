@@ -18,7 +18,7 @@ jobs:
         date
         test ! -d ./dist && mkdir ./dist
         ls -al
-        pip install bs4 -y        
+        pip install bs4
         python script/web2json-data.py
         ls -al
     - name: publish data json
