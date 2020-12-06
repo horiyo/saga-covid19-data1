@@ -9,21 +9,23 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
+    - uses: actions/checkout@v2
+      with:
+        ref: data
     - name: setup python
       uses: actions/setup-python@v1
       with:
         python-version: '3.8'
     - name: python doit
-      run: |
-        date
-        test ! -d ./dist && mkdir ./dist
-        ls -al
+      run: 
         pip install bs4
+        test ! -d ./data && ./data
+        test ! -d ./data/data && ./data/data
+        test ! -d ./data/news && ./data/news
         python script/web2json-data.py
-        ls -al
     - name: publish data json
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./dist
+        publish_dir: ./data
         publish_branch: data
