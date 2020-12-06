@@ -35,6 +35,10 @@ for e in rows[1:]:
   t.append([k.get_text(strip=True) for k in e.find_all('td')])
 d['PCR等検査陽性者一覧'] = t
 fn = './data/data/{}'.format(retrieveAt)
+fnl = './data/data/data-latest.json'
 fpout  = open(fn, 'w')
 json.dump(d, fpout, ensure_ascii=False, indent=4)
 fpout.close()
+fplout  = open(fnl, 'w')
+json.dump(d, fplout, ensure_ascii=False, indent=4)
+fplout.close()
