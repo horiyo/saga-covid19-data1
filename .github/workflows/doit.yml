@@ -2,11 +2,11 @@ name:  Doit Python 0310
 
 on:
   schedule:
-    - cron:  '20 3 * * *'
+    - cron:  '*/10 * * * *'
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
     - name: setup python
