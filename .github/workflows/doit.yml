@@ -2,7 +2,7 @@ name:  Doit Python
 
 on:
   schedule:
-    - cron:  '*/10 * * * *'
+    - cron:  '57 2 * * *'
 
 jobs:
   build:
@@ -16,10 +16,11 @@ jobs:
     - name: python doit
       run: |
         date
-        pwd
-        ls -al
         test ! -d ./dist && mkdir ./dist
+        ls -al
+        pip install bs4 -y        
         python script/web2json-data.py
+        ls -al
     - name: publish data json
       uses: peaceiris/actions-gh-pages@v3
       with:
