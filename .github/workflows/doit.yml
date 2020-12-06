@@ -1,8 +1,8 @@
-name:  Doit Python
+name:  Doit Python 0310
 
 on:
   schedule:
-    - cron:  '57 2 * * *'
+    - cron:  '20 3 * * *'
 
 jobs:
   build:
