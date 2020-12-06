@@ -14,9 +14,9 @@ jobs:
       with:
         python-version: '3.7'
     - name: python doit
-      run: mkdir ./dist
-      run: ls -l
-      run: python ./script/web2json-data.py
+    - run: mkdir ./dist
+    - run: ls -l
+    - run: python ./script/web2json-data.py
     - name: publish data json
       uses: peaceiris/actions-gh-pages@v3
       with:
