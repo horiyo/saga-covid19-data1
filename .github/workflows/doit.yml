@@ -12,6 +12,7 @@ jobs:
     - uses: actions/checkout@v2
       with:
         ref: data
+        path: data 
     - name: setup python
       uses: actions/setup-python@v1
       with:
