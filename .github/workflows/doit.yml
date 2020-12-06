@@ -17,7 +17,7 @@ jobs:
       with:
         python-version: '3.8'
     - name: python doit
-      run: 
+      run: |
         pip install bs4
         test ! -d ./data && ./data
         test ! -d ./data/data && ./data/data
