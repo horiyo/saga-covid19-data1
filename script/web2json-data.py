@@ -41,7 +41,7 @@ for e in rows[1:]:
   t.append([k.get_text(strip=True) for k in e.find_all('td')])
 d['PCR等検査陽性者一覧'] = t
 storeDir = './data/data/{}/{}/{}'.format(retYear, retMonth, retDay)
-os.makedirs(storeDir, exist_os=True)
+os.makedirs(storeDir, exist_ok=True)
 fn = '{}/{}'.format(storeDir, ISOretrieveAt)
 fnl = './data/data/data-latest.json'
 fpout  = open(fn, 'w')
