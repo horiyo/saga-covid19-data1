@@ -41,7 +41,7 @@ for k in divs:
 data['retrieveAt'] = ISOretrieveAt
 data['newsItems'] = out
 storeDir = './data/news/{}/{}/{}'.format(retYear, retMonth, retDay)
-os.makedirs(storeDir, exist_os=True)
+os.makedirs(storeDir, exist_ok=True)
 fn = '{}/{}'.format(storeDir, ISOretrieveAt)
 fnl = './data/news/news-latest.json'
 fpout  = open(fn, 'w')
