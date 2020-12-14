@@ -5,12 +5,17 @@ from bs4 import BeautifulSoup
 import sys
 import re
 import json
+import os
 from datetime import datetime, timedelta, timezone
 JST = timezone(timedelta(hours=+9))
 
 url = 'https://www.pref.saga.lg.jp/list04342.html'
 response = request.urlopen(url)
-retrieveAt = str(datetime.now(JST).isoformat(timespec='seconds'))
+retrieveAt = datetime.now(JST)
+retYear = retrieveAt.year
+retMonth = retrieveAt.month
+retDay = retrieveAt.day
+ISOretrieveAt = str(retrieveAt.isoformat(timespec='seconds'))
 soup = BeautifulSoup(response, features="html.parser")
 response.close()
 divs = soup.find_all('div', attrs={'class': 'mainblock'})
@@ -33,9 +38,11 @@ for k in divs:
     item['url'] = 'https:@@@@www.pref.saga.lg.jp@@{}'.format(u)
     item['text'] = text
     out.append(item)
-data['retrieveAt'] = retrieveAt
+data['retrieveAt'] = ISOretrieveAt
 data['newsItems'] = out
-fn = './data/news/{}'.format(retrieveAt)
+storeDir = './data/news/{}/{}/{}'.format(retYear, retMonth, retDay)
+os.makedirs(storeDir, exist_os=True)
+fn = '{}/{}'.format(storeDir, ISOretrieveAt)
 fnl = './data/news/news-latest.json'
 fpout  = open(fn, 'w')
 fpout.write(json.dumps(data, indent=4, ensure_ascii=False).replace('@@', r'\/'))
