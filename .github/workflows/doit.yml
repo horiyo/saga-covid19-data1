@@ -2,7 +2,7 @@ name:  getdata and store
 
 on:
   schedule:
-    - cron:  '0 8,14,15 * * *'
+    - cron:  '10 8,14,15 * * *'
 
 jobs:
   build:
