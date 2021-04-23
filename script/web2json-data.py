@@ -7,7 +7,6 @@ import os
 from datetime import datetime, timedelta, timezone
 JST = timezone(timedelta(hours=+9))
 
-#url = 'https://www.pref.saga.lg.jp/kiji00373220/index.html'
 url = 'https://www.pref.saga.lg.jp/kiji00380157/index.html'
 
 response = request.urlopen(url)
