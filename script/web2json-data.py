@@ -35,12 +35,12 @@ t.append([k.get_text(strip=True) for k in rows[0].find_all('th')])
 for e in rows[1:]:
   t.append([k.get_text(strip=True) for k in e.find_all('td')])
 d['検査実施状況'] = t
-rows = tbls[2].find_all('tr')
-t = []
-t.append([k.get_text(strip=True) for k in rows[0].find_all('th')])
-for e in rows[1:]:
-  t.append([k.get_text(strip=True) for k in e.find_all('td')])
-d['PCR等検査陽性者一覧'] = t
+#rows = tbls[2].find_all('tr')
+#t = []
+#t.append([k.get_text(strip=True) for k in rows[0].find_all('th')])
+#for e in rows[1:]:
+#  t.append([k.get_text(strip=True) for k in e.find_all('td')])
+#d['PCR等検査陽性者一覧'] = t
 storeDir = './data/data/{}/{}/{}'.format(retYear, retMonth, retDay)
 os.makedirs(storeDir, exist_ok=True)
 fn = '{}/{}'.format(storeDir, ISOretrieveAt)
