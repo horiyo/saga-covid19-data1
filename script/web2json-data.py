@@ -7,7 +7,7 @@ import os
 from datetime import datetime, timedelta, timezone
 JST = timezone(timedelta(hours=+9))
 
-url = 'https://www.pref.saga.lg.jp/kiji00380273/index.html'
+url = 'https://www.pref.saga.lg.jp/kiji00381514/index.html'
 
 response = request.urlopen(url)
 retrieveAt = datetime.now(JST)
