@@ -23,24 +23,19 @@ d = {}
 d['見出し'] = soup.find('title').get_text(strip=True)
 d['retrievedAt'] = ISOretrieveAt
 tbls = soup.find_all('table', {'class': '__wys_table'})
-rows = tbls[0].find_all('tr')
-t = []
-t.append([k.get_text(strip=True) for k in rows[0].find_all('th')])
-for e in rows[1:]:
-  t.append([k.get_text(strip=True) for k in e.find_all('td')])
-d['患者発生状況'] = t
-rows = tbls[1].find_all('tr')
-t = []
-t.append([k.get_text(strip=True) for k in rows[0].find_all('th')])
-for e in rows[1:]:
-  t.append([k.get_text(strip=True) for k in e.find_all('td')])
-d['検査実施状況'] = t
-#rows = tbls[2].find_all('tr')
-#t = []
-#t.append([k.get_text(strip=True) for k in rows[0].find_all('th')])
-#for e in rows[1:]:
-#  t.append([k.get_text(strip=True) for k in e.find_all('td')])
-#d['PCR等検査陽性者一覧'] = t
+captext = tbls[0].find_all('caption')[0].get_text(strip=True)
+d[captext] = {}
+trs = tbls[0].find_all('tr')
+for k in range(len(trs)):
+  tds = trs[k].find_all('td')
+  d[captext][tds[0].get_text(strip=True)] = tds[1].get_text(strip=True)
+captext = soup.find_all('h3', {'class': 'title'})[0].get_text(strip=True)
+d[captext] = {}
+trs = tbls[1].find_all('tr')
+for k in range(len(trs)):
+  tds = trs[k].find_all('td')
+  d[captext][tds[0].get_text(strip=True)] = tds[1].get_text(strip=True)
+          
 storeDir = './data/data/{}/{}/{}'.format(retYear, retMonth, retDay)
 os.makedirs(storeDir, exist_ok=True)
 fn = '{}/{}'.format(storeDir, ISOretrieveAt)
